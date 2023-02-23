@@ -36,10 +36,20 @@ const getAirPortCitys = (request, response) => {
     })
   }
 
+  const getAirportPassengers = (request, response) => {
+    pool.query('select *from passengers p, airports a,  passenger_airport pa where pa.passenger_id = p.id and pa.airport_id = a.id order by p.first_name', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
 
 
   module.exports = {
     getAirPortCitys,
     getPassengerPlane,
     getAllowedAirports,
+    getAirportPassengers
   }
