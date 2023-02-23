@@ -8,7 +8,20 @@ const pool = new Pool({
     port:5433
 })
 
+// ======================== Queries for the questions =================================
+/**
+ * 
+ * Cities can have many airports
 
+· Passengers can fly on many aircraft and live in one city
+
+· Aircraft can have many passengers and land/take off from many Airports
+
+· Airports can only be in one city
+ * 
+ * 
+ * 
+ */
 const getAirPortCitys = (request, response) => {
     pool.query('select * from cities c, airports a,  city_airports ca where ca.city_id = c.id and ca.airport_id = a.id order by c.name ', (error, results) => {
       if (error) {
@@ -45,11 +58,41 @@ const getAirPortCitys = (request, response) => {
     })
   }
 
+  const getAirport = (request, response) => {
+    pool.query('select *from airports ', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+/**
+ * 
+ * ================ Create Statements For API ====================
+ * 
+ * 
+ */
+
+const createAirport = (request, response) => {
+    const { id, name, airport_code, passenger_used} = request.body
+  
+    pool.query('INSERT INTO airports (id, name, airport_code, passenger_used) VALUES ($1, $2, $3, $4)',
+      [id, name, airport_code, passenger_used], (error, results) => {
+          if (error) {
+            throw error
+          }
+          response.status(201).send(`Airport added with ID: ${results.insertId}`)
+        })
+  }
+
 
 
   module.exports = {
     getAirPortCitys,
     getPassengerPlane,
     getAllowedAirports,
-    getAirportPassengers
+    getAirportPassengers,
+    getAirport,
+    createAirport,
   }

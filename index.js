@@ -17,11 +17,19 @@ restAPP.get('/', (request,response)=>{
     response.json({info: 'Node.Js, Express, and Postgres API'})
 })
 
-
+// Queries To Answer The Questions 
 restAPP.get('/airportcitys', pgDBAccessLayer.getAirPortCitys)
 restAPP.get('/passengerplane', pgDBAccessLayer.getPassengerPlane)
 restAPP.get('/allowedairports', pgDBAccessLayer.getAllowedAirports)
 restAPP.get('/airportpassengers', pgDBAccessLayer.getAirportPassengers)
+
+restAPP.get('/airport', pgDBAccessLayer.getAirport)
+
+// Create Endpoints 
+
+restAPP.post('/createairport', pgDBAccessLayer.createAirport)
+
+
 
 
 
