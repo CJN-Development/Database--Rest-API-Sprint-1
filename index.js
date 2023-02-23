@@ -19,6 +19,10 @@ restAPP.get('/', (request,response)=>{
 
 
 restAPP.get('/airportcitys', pgDBAccessLayer.getAirPortCitys)
+restAPP.get('/passengerplane', pgDBAccessLayer.getPassengerPlane)
+restAPP.get('/allowedairports', pgDBAccessLayer.getAllowedAirports)
+
+
 
 
 restAPP.listen(port, ()=>{
