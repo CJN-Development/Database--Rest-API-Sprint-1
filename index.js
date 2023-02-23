@@ -28,6 +28,7 @@ restAPP.get('/airport', pgDBAccessLayer.getAirport)
 // Create Endpoints 
 
 restAPP.post('/createairport', pgDBAccessLayer.createAirport)
+restAPP.post('/createcity',pgDBAccessLayer.createCity)
 
 
 

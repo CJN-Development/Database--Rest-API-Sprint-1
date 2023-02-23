@@ -86,6 +86,20 @@ const createAirport = (request, response) => {
         })
   }
 
+  const createCity = (request, response) => {
+    const {id, name, province, population} = request.body
+  
+    pool.query('INSERT INTO cities (id, name, province, population) VALUES ($1, $2, $3, $4)',
+      [id, name, province, population], (error, results) => {
+          if (error) {
+            throw error
+          }
+          response.status(201).send(`City was added with ID: ${results.insertId}`)
+        })
+  }
+
+
+
 
 
   module.exports = {
@@ -95,4 +109,5 @@ const createAirport = (request, response) => {
     getAirportPassengers,
     getAirport,
     createAirport,
+    createCity
   }
