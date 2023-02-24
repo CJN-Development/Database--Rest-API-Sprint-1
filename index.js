@@ -30,6 +30,9 @@ restAPP.get('/airport', pgDBAccessLayer.getAirport)
 restAPP.post('/createairport', pgDBAccessLayer.createAirport)
 restAPP.post('/createcity',pgDBAccessLayer.createCity)
 restAPP.post('/createaircraft',pgDBAccessLayer.createAircraft)
+restAPP.post('/createpassenger',pgDBAccessLayer.createPassenger)
+
+
 
 
 

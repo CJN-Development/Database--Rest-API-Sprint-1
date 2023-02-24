@@ -114,6 +114,18 @@ const createAirport = (request, response) => {
         })
   }
 
+  const createPassenger = (request, response) => {
+    const {id, first_name, last_name, phone_number,city_id} = request.body
+  
+    pool.query('INSERT INTO passengers (id, first_name, last_name, phone_number,city_id) VALUES ($1, $2, $3, $4, $5)',
+      [id, first_name, last_name, phone_number,city_id], (error, results) => {
+          if (error) {
+            throw error
+          }
+          response.status(201).send(`Passenger was added with ID: ${results.insertId}`)
+        })
+  }
+
 
 
 
@@ -127,4 +139,5 @@ const createAirport = (request, response) => {
     createAirport,
     createCity,
     createAircraft,
+    createPassenger,
   }
