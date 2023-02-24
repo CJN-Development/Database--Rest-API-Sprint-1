@@ -58,6 +58,8 @@ const getAirPortCitys = (request, response) => {
     })
   }
 
+
+
   const getAirport = (request, response) => {
     pool.query('select *from airports ', (error, results) => {
       if (error) {
@@ -73,6 +75,8 @@ const getAirPortCitys = (request, response) => {
  * 
  * 
  */
+
+
 
 const createAirport = (request, response) => {
     const { id, name, airport_code, passenger_used} = request.body
@@ -98,6 +102,18 @@ const createAirport = (request, response) => {
         })
   }
 
+  const createAircraft = (request, response) => {
+    const {id, type, airline_name, passanger_capicity} = request.body
+  
+    pool.query('INSERT INTO aircraft (id, type, airline_name, passanger_capicity) VALUES ($1, $2, $3, $4)',
+      [id, type, airline_name, passanger_capicity], (error, results) => {
+          if (error) {
+            throw error
+          }
+          response.status(201).send(`Aircraft was added with ID: ${results.insertId}`)
+        })
+  }
+
 
 
 
@@ -109,5 +125,6 @@ const createAirport = (request, response) => {
     getAirportPassengers,
     getAirport,
     createAirport,
-    createCity
+    createCity,
+    createAircraft,
   }
