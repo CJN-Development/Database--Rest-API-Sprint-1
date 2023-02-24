@@ -60,8 +60,38 @@ const getAirPortCitys = (request, response) => {
 
 
 
+//   Read Endpoints For The API 
+
+
   const getAirport = (request, response) => {
     pool.query('select *from airports ', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+  const getCities = (request, response) => {
+    pool.query('select *from cities ', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+  const getPassengers = (request, response) => {
+    pool.query('select * from passengers ', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+  const getAircraft = (request, response) => {
+    pool.query('select * from aircraft ', (error, results) => {
       if (error) {
         throw error
       }
@@ -139,7 +169,10 @@ const createAirport = (request, response) => {
     getPassengerPlane,
     getAllowedAirports,
     getAirportPassengers,
+    getCities,
     getAirport,
+    getPassengers,
+    getAircraft,
     createAirport,
     createCity,
     createAircraft,

@@ -23,7 +23,15 @@ restAPP.get('/passengerplane', pgDBAccessLayer.getPassengerPlane)
 restAPP.get('/allowedairports', pgDBAccessLayer.getAllowedAirports)
 restAPP.get('/airportpassengers', pgDBAccessLayer.getAirportPassengers)
 
+
+//  Get Endpoints For The API
 restAPP.get('/airport', pgDBAccessLayer.getAirport)
+restAPP.get('/cities', pgDBAccessLayer.getCities)
+restAPP.get('/passengers', pgDBAccessLayer.getPassengers)
+restAPP.get('/aircraft', pgDBAccessLayer.getAircraft)
+
+
+
 
 // Create Endpoints 
 
