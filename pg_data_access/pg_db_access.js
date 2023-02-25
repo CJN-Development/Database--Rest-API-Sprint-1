@@ -4,7 +4,7 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "QAP1",
-  password: "Keyin2023",
+  password: "jordan1234",
   port: 5433,
 });
 
@@ -193,7 +193,7 @@ const deleteAirport = (request, response) => {
     if (error) {
       throw error;
     }
-    response.status(200).send(`Student deleted with ID: ${id}`);
+    response.status(200).send(`Airport deleted with ID: ${id}`);
   });
 };
 
@@ -204,7 +204,7 @@ const deleteCity = (request, response) => {
     if (error) {
       throw error;
     }
-    response.status(200).send(`Student deleted with ID: ${id}`);
+    response.status(200).send(`City deleted with ID: ${id}`);
   });
 };
 
@@ -215,7 +215,7 @@ const deleteAircraft = (request, response) => {
     if (error) {
       throw error;
     }
-    response.status(200).send(`Student deleted with ID: ${id}`);
+    response.status(200).send(`Aircraft deleted with ID: ${id}`);
   });
 };
 
@@ -226,7 +226,7 @@ const deletePassenger = (request, response) => {
     if (error) {
       throw error;
     }
-    response.status(200).send(`Student deleted with ID: ${id}`);
+    response.status(200).send(`Passenger deleted with ID: ${id}`);
   });
 };
 
@@ -238,17 +238,17 @@ const deletePassenger = (request, response) => {
  */
 
 const updateAirport = (request, response) => {
-  const Id = parseInt(request.params.id);
-  const { id, name, airport_code, passenger_used } = request.body;
+  const id = parseInt(request.params.id);
+  const { name, airport_code, passenger_used } = request.body;
 
   pool.query(
-    "UPDATE airports SET id = $1, name = $2, airport_code = $3, passenger_used = $4",
-    [id, name, airport_code, passenger_used],
+    "UPDATE airports SET  name = $1, airport_code = $2, passenger_used = $3 WHERE id = $4" ,
+    [name, airport_code, passenger_used,id],
     (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Student modified with ID: ${Id}`);
+      response.status(200).send(`Student modified with ID: ${id}`);
     }
   );
 };

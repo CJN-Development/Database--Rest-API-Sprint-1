@@ -38,14 +38,14 @@ restAPP.post("/createpassenger", pgDBAccessLayer.createPassenger);
 
 // Delete Endpoints
 
-restAPP.delete("/deleteairport", pgDBAccessLayer.deleteAirport);
-restAPP.delete("/deletecity", pgDBAccessLayer.deleteCity);
-restAPP.delete("/deleteaircraft", pgDBAccessLayer.deleteAircraft);
-restAPP.delete("/deletepassenger", pgDBAccessLayer.deletePassenger);
+restAPP.delete("/deleteairport/:id", pgDBAccessLayer.deleteAirport);
+restAPP.delete("/deletecity/:id", pgDBAccessLayer.deleteCity);
+restAPP.delete("/deleteaircraft/:id", pgDBAccessLayer.deleteAircraft);
+restAPP.delete("/deletepassenger/:id", pgDBAccessLayer.deletePassenger);
 
 // Update Endpoints
 
-restAPP.put("/updateairport", pgDBAccessLayer.updateAirport);
+restAPP.put("/updateairport/:id", pgDBAccessLayer.updateAirport);
 
 restAPP.listen(port, () => {
   console.log(`App Is Running on port ${port}.`);
