@@ -46,6 +46,10 @@ restAPP.delete("/deletepassenger/:id", pgDBAccessLayer.deletePassenger);
 // Update Endpoints
 
 restAPP.put("/updateairport/:id", pgDBAccessLayer.updateAirport);
+restAPP.put("/updatecity/:id", pgDBAccessLayer.updateCity);
+restAPP.put("/updateaircraft/:id", pgDBAccessLayer.updateAircraft);
+restAPP.put("/updatepassenger/:id", pgDBAccessLayer.updatePassenger);
+
 
 restAPP.listen(port, () => {
   console.log(`App Is Running on port ${port}.`);

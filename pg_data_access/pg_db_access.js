@@ -248,7 +248,7 @@ const updateAirport = (request, response) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Student modified with ID: ${id}`);
+      response.status(200).send(`Airport modified with ID: ${id}`);
     }
   );
 };
@@ -257,13 +257,13 @@ const updateAircraft = (request, response) => {
   const { type, airline_name, passanger_capicity } = request.body;
 
   pool.query(
-    "UPDATE aircraft SET type = $1, airline_name = $2 passenger_capicity = $3 WHERE id = $4",
-    [id, type, airline_name, passanger_capicity],
+    "UPDATE aircraft SET type = $1, airline_name = $2, passanger_capicity = $3 WHERE id = $4",
+    [ type, airline_name, passanger_capicity, id],
     (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Student modified with ID: ${id}`);
+      response.status(200).send(`aircraft modified with ID: ${id}`);
     }
   );
 };
@@ -273,12 +273,12 @@ const updateCity = (request, response) => {
 
   pool.query(
     "UPDATE cities SET  name = $1, province = $2, population = $3 WHERE id = $4",
-    [id, name, province, population],
+    [ name, province, population,id],
     (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Student modified with ID: ${id}`);
+      response.status(200).send(`City modified with ID: ${id}`);
     }
   );
 };
@@ -289,12 +289,12 @@ const updatePassenger = (request, response) => {
 
   pool.query(
     "UPDATE passengers SET  first_name = $1, last_name = $2, phone_number = $3, city_id = $4 WHERE id = $5",
-    [id, first_name, last_name, phone_number, city_id],
+    [first_name, last_name, phone_number, city_id,id],
     (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Student modified with ID: ${id}`);
+      response.status(200).send(`Passenger modified with ID: ${id}`);
     }
   );
 };
