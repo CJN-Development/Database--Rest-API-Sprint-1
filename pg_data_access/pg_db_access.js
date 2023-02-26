@@ -36,7 +36,7 @@ const getAirPortCitys = (request, response) => {
 
 const getPassengerPlane = (request, response) => {
   pool.query(
-    "select *from passengers p, aircraft a,  passenger_plane pa where pa.passenger_id = p.id and pa.aircraft_id = a.id ",
+    "select * from passengers p, aircraft a,  passenger_plane pa where pa.passenger_id = p.id and pa.aircraft_id = a.id ",
     (error, results) => {
       if (error) {
         throw error;
@@ -242,8 +242,54 @@ const updateAirport = (request, response) => {
   const { name, airport_code, passenger_used } = request.body;
 
   pool.query(
-    "UPDATE airports SET  name = $1, airport_code = $2, passenger_used = $3 WHERE id = $4" ,
-    [name, airport_code, passenger_used,id],
+    "UPDATE airports SET  name = $1, airport_code = $2, passenger_used = $3 WHERE id = $4",
+    [name, airport_code, passenger_used, id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Student modified with ID: ${id}`);
+    }
+  );
+};
+const updateAircraft = (request, response) => {
+  const id = parseInt(request.params.id);
+  const { type, airline_name, passanger_capicity } = request.body;
+
+  pool.query(
+    "UPDATE aircraft SET type = $1, airline_name = $2 passenger_capicity = $3 WHERE id = $4",
+    [id, type, airline_name, passanger_capicity],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Student modified with ID: ${id}`);
+    }
+  );
+};
+const updateCity = (request, response) => {
+  const id = parseInt(request.params.id);
+  const { name, province, population } = request.body;
+
+  pool.query(
+    "UPDATE cities SET  name = $1, province = $2, population = $3 WHERE id = $4",
+    [id, name, province, population],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`Student modified with ID: ${id}`);
+    }
+  );
+};
+
+const updatePassenger = (request, response) => {
+  const id = parseInt(request.params.id);
+  const { first_name, last_name, phone_number, city_id } = request.body;
+
+  pool.query(
+    "UPDATE passengers SET  first_name = $1, last_name = $2, phone_number = $3, city_id = $4 WHERE id = $5",
+    [id, first_name, last_name, phone_number, city_id],
     (error, results) => {
       if (error) {
         throw error;
@@ -271,4 +317,7 @@ module.exports = {
   deleteAircraft,
   deletePassenger,
   updateAirport,
+  updateCity,
+  updateAircraft,
+  updatePassenger,
 };
